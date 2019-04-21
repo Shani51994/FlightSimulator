@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="FlightSimulator.Views.JoystickWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:joystickWindow="clr-namespace:FlightSimulator.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="420" d:DesignWidth="460">
+    <Grid Background="Pink" MinHeight="420" MinWidth="460">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <TextBox Text="← rudder →" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" Background="Pink"></TextBox>
+        <TextBox Text="← aileron →" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" Background="Pink"></TextBox>
+        <TextBox Text="← thorttel →" Grid.Row="1" VerticalAlignment="Center"  Grid.Column="0" FontSize="15" Background="Pink" FontWeight="Bold">
+            <TextBox.LayoutTransform>
+                <RotateTransform Angle="90"/>
+            </TextBox.LayoutTransform>
+        </TextBox>
+        <TextBox Text="← elevator →" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" FontSize="15" Background="Pink" FontWeight="Bold">
+            <TextBox.LayoutTransform>
+                <RotateTransform Angle="90"/>
+            </TextBox.LayoutTransform>
+        </TextBox>
+        <Slider Grid.Row="1" Grid.Column="1" Value="{Binding  ChangeTorttel}" Name="LeftS" Minimum="0" Maximum="1" Width="30" TickPlacement="TopLeft" TickFrequency="0.1" Orientation="Vertical"></Slider>
+        <Slider Grid.Row="2" Grid.Column="2"  Name="ButtomR" Minimum="-1" Maximum="1" Width="300" TickPlacement="TopLeft" TickFrequency="0.2"></Slider>
+        <TextBox Background="Pink" FontSize="15" FontWeight="Bold" Name="thorttelVal" Grid.Row="1" Grid.Column="2" Text="{Binding ElementName=LeftS, Path=Value, StringFormat=N2}" ></TextBox>
+        <TextBox Background="Pink" FontSize="15" FontWeight="Bold" Name="rudderVal" Grid.Row="2" Grid.Column="3" Text="{Binding ElementName=ButtomR, Path=Value, StringFormat=N2}" ></TextBox>
+        <TextBox Background="Pink" FontSize="15" FontWeight="Bold" Name="elevatorVal" Grid.Row="1" Grid.Column="4"  Text="{Binding ElementName=LeftS, Path=Value, StringFormat=N2}" >
+            <TextBox.LayoutTransform>
+                <RotateTransform Angle="90"/>
+            </TextBox.LayoutTransform>
+        </TextBox>
+        <TextBox Background="Pink" FontSize="15" FontWeight="Bold" Name="ailerinVal" Grid.Row="0" Grid.Column="3" Text="{Binding ElementName=LeftS, Path=Value, StringFormat=N2}" ></TextBox>
+
+        <joystickWindow:Joystick Grid.Row="1" Grid.Column="2"></joystickWindow:Joystick>
+
+    </Grid>
+</UserControl>
