@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FlightSimulator"
         xmlns:Views="clr-namespace:FlightSimulator.Views" x:Class="FlightSimulator.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="1000">
+        Title="MainWindow" Height="550" Width="1000">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -18,7 +18,7 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TextBox Text="flight simulator" Grid.Row="0" HorizontalAlignment="Center"></TextBox>
-        <Views:JoystickWindow Grid.Column="1" Grid.Row="1" Margin="13"/>
+        <Views:tabs Grid.Column="1" Grid.Row="1" Margin="10"/>
         <Views:FlightBoardWindow Grid.Column="0" Grid.Row="1" Margin="10"/>
 
     </Grid>
