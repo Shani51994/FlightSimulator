@@ -8,20 +8,47 @@ using FlightSimulator.Model;
 
 namespace FlightSimulator.ViewModels
 {
-    class AutoPilotViewModel
+    class AutoPilotViewModel : BaseNotify
     {
         private ICommand sendCommand;
         private ICommand clearCommand;
-        //private String command;
+        private String textUser = "";
+    
+    // properties
+    public String TextUser
+        {
+            get
+            {
+                return this.textUser;
+            }
+            set
+            {
+                textUser = value;
+                NotifyPropertyChanged("TextUser");
+                NotifyPropertyChanged("BackgroundColor");
+            }
+        }
 
-        // properties
-        //public String Command;
+        public String BackgroundColor
+        {
+            get
+            {
+                if (textUser == "")
+                {
+                    return "White";
+                }
+                else
+                {
+                    return "Pink";
+                }
+            }
+        }
 
         public ICommand SendCommand
         {
             get
             {
-                return sendCommand ?? (sendCommand = new CommandHandler(() => OnClick()));
+                return sendCommand ?? (sendCommand = new CommandHandler(() => SendClick()));
             }
         }
 
@@ -29,18 +56,19 @@ namespace FlightSimulator.ViewModels
         {
             get
             {
-                return clearCommand ?? (clearCommand = new CommandHandler(() => OnClick()));
+                return clearCommand ?? (clearCommand = new CommandHandler(() => ClearClick()));
             }
         }
 
-        private void OnClick()
+        private void SendClick()
         {
 
         }
 
-        private void OnClear()
+        private void ClearClick()
         {
-
+            TextUser = "";
         }
+     
     }
 }
