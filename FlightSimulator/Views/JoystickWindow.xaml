@@ -38,14 +38,14 @@
         <Slider Grid.Row="2" Grid.Column="2"  Name="ButtomR" Minimum="-1" Maximum="1" Width="300" TickPlacement="TopLeft" TickFrequency="0.2"></Slider>
         <TextBox Background="Pink" FontSize="15" FontWeight="Bold" Name="thorttelVal" Grid.Row="1" Grid.Column="2" Text="{Binding ElementName=LeftS, Path=Value, StringFormat=N2}" ></TextBox>
         <TextBox Background="Pink" FontSize="15" FontWeight="Bold" Name="rudderVal" Grid.Row="2" Grid.Column="3" Text="{Binding ElementName=ButtomR, Path=Value, StringFormat=N2}" ></TextBox>
-        <TextBox Background="Pink" FontSize="15" FontWeight="Bold" Name="elevatorVal" Grid.Row="1" Grid.Column="4"  Text="{Binding ElementName=LeftS, Path=Value, StringFormat=N2}" >
+        <TextBox Background="Pink" FontSize="15" FontWeight="Bold" Name="elevatorVal" Grid.Row="1" Grid.Column="4"  Text="{Binding ElementName=Joyst, Path=Elevator, StringFormat=N2}" >
             <TextBox.LayoutTransform>
                 <RotateTransform Angle="90"/>
             </TextBox.LayoutTransform>
         </TextBox>
-        <TextBox Background="Pink" FontSize="15" FontWeight="Bold" Name="ailerinVal" Grid.Row="0" Grid.Column="3" Text="{Binding ElementName=LeftS, Path=Value, StringFormat=N2}" ></TextBox>
-
-        <joystickWindow:Joystick Grid.Row="1" Grid.Column="2"></joystickWindow:Joystick>
+        <TextBox Background="Pink" FontSize="15" FontWeight="Bold" Name="ailerinVal" Grid.Row="0" Grid.Column="3" Text="{Binding ElementName=Joyst, Path=Aileron, StringFormat=N2}" ></TextBox>
+        <joystickWindow:Joystick Grid.Row="1" Grid.Column="2"  x:Name="Joyst" HorizontalAlignment="Center" 
+                        Aileron="{Binding Aileron, Mode=OneWayToSource}" Elevator="{Binding Elevator, Mode=OneWayToSource}"></joystickWindow:Joystick>
 
     </Grid>
 </UserControl>
