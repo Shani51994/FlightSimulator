@@ -15,8 +15,8 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <WrapPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
-            <Button Margin="10" Height="30" Width="50" FontWeight="Bold">OK</Button>
-            <Button Margin="10" x:Name="ClearBut" Height="30" Width="50" FontWeight="Bold" >Clear</Button>
+            <Button Margin="10" Height="30" Width="50" FontWeight="Bold" Command="{Binding SendCommand}">OK</Button>
+            <Button Margin="10" x:Name="ClearBut" Height="30" Width="50" FontWeight="Bold" Command="{Binding ClearCommand}">Clear</Button>
         </WrapPanel>
         <TextBox  Grid.Row="0" Grid.Column="0" TextWrapping="Wrap"   Name="Commands" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="5" FontSize="13">
             <TextBox.InputBindings>
