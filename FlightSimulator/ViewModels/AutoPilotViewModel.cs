@@ -14,14 +14,16 @@ namespace FlightSimulator.ViewModels
         private ICommand clearCommand;
         private String textUser = "";
         public Command commandClient;
-    
+        public bool isOkPressed = false;
+        public string oldTxt = "";
+
         public AutoPilotViewModel()
         {
             commandClient = Command.Instance;
         }
 
-    // properties
-    public String TextUser
+        // properties
+        public String TextUser
         {
             get
             {
@@ -45,6 +47,11 @@ namespace FlightSimulator.ViewModels
                 }
                 else
                 {
+                    if (isOkPressed && (TextUser == oldTxt))
+                    {
+                        return "White";
+                    }
+                    isOkPressed = false;
                     return "Pink";
                 }
             }
@@ -69,12 +76,14 @@ namespace FlightSimulator.ViewModels
         private void SendClick()
         {
             commandClient.sendToSimulator(textUser);
-            TextUser = "";
+            oldTxt = TextUser;
+            isOkPressed = true;
+            NotifyPropertyChanged("BackgroundColor");
         }
 
         private void ClearClick()
         {
-            TextUser = "";
+            TextUser = ""; 
         }
      
     }

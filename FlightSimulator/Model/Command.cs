@@ -108,10 +108,10 @@ namespace FlightSimulator.Model
                 string totalCommands = command + "\r\n";
                 byte[] buffer = Encoding.ASCII.GetBytes(totalCommands);
                 networkStream.Write(buffer, 0, buffer.Length);
+
+                Thread.Sleep(2000);
             }
 
-            //******************************************************************************* check if inside or out
-            Thread.Sleep(2000);
         }
 
         public void JoystickSendToSimulator(string textUser)
