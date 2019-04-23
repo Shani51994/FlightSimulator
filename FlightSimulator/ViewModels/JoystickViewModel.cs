@@ -11,8 +11,8 @@ namespace FlightSimulator.ViewModels
     {
         private float changeThrottle;
         private float changeRudder;
-        private float changeAileron;
-        private float changeElevator;
+        private float aileron;
+        private float elevator;
 
         // properties
         public float ChangeThrottle
@@ -24,7 +24,7 @@ namespace FlightSimulator.ViewModels
             set
             {
                 this.changeThrottle = value;
-                sliderChanges("controls/engines/current-engine/throttle", changeThrottle);
+                setChanges("controls/engines/current-engine/throttle", changeThrottle);
                 NotifyPropertyChanged("changeThrottle");
             }
         }
@@ -38,12 +38,40 @@ namespace FlightSimulator.ViewModels
             set
             {
                 this.changeRudder = value;
-                sliderChanges("controls/flight/rudder", changeThrottle);
+                setChanges("controls/flight/rudder", changeThrottle);
                 NotifyPropertyChanged("changeRudder");
             }
         }
 
-        private void sliderChanges(string pathName, float val)
+        public float Aileron
+        {
+            get
+            {
+                return this.aileron;
+            }
+            set
+            {
+                this.aileron = value;
+                setChanges("controls/flight/aileron", aileron);
+                NotifyPropertyChanged("aileron");
+            }
+        }
+
+        public float Elevator
+        {
+            get
+            {
+                return elevator;
+            }
+            set
+            {
+                this.elevator = value;
+                setChanges("controls/flight/elevator", elevator);
+                NotifyPropertyChanged("elevator");
+            }
+        }
+
+        private void setChanges(string pathName, float val)
         {
             string strVal = val.ToString("0.00");
             string command = "set " + pathName + " " + strVal;
