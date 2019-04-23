@@ -13,7 +13,7 @@ namespace FlightSimulator.ViewModels
     public class FlightBoardViewModel : BaseNotify
     {
         private ICommand setCommand;
-
+      
         // property
         public ICommand OpenSettingsWindow
         {
@@ -28,6 +28,41 @@ namespace FlightSimulator.ViewModels
             Settings settings = new Settings();
             // shows the window
             settings.ShowDialog();
+        }
+
+        bool isConnect = false;
+        private ICommand connectCommand;
+
+        // property
+        public ICommand ConnectCommand
+        {
+            get
+            {
+                return connectCommand ?? (connectCommand = new CommandHandler(() => ConnectClick()));
+            }
+            set
+            {
+
+            }
+        }
+
+        private void ConnectClick()
+        {
+            // only if not connected- connect.
+            if (!this.isConnect)
+            {
+                this.open();
+                this.isConnect = true;
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void open()
+        {
+            Info.Instance.openServer();
         }
 
         public double Lon

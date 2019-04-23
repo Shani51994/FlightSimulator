@@ -85,10 +85,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\ApplicationSettingsModel.cs" />
+    <Compile Include="Model\Command.cs" />
     <Compile Include="Model\CommandHandler.cs" />
     <Compile Include="Model\EventArgs\VirtualJoystickEventArgs.cs" />
     <Compile Include="Model\Interface\ISettingsModel.cs" />
-    <Compile Include="Model\Server.cs" />
+    <Compile Include="Model\Info.cs" />
     <Compile Include="ViewModels\AutoPilotViewModel.cs" />
     <Compile Include="ViewModels\BaseNotify.cs" />
     <Compile Include="ViewModels\FlightBoardViewModel.cs" />

@@ -12,14 +12,28 @@ using System.Threading.Tasks;
 
 namespace FlightSimulator.Model
 {
-    public class Server
+    public class Info
     {
         private bool toStop;
         private float lon;
         private float lat;
         Thread thread;
+        private static Info instance = null;
 
-        public Server()
+        public static Info Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Info();
+                }
+
+                return instance;
+            }
+        } 
+
+        public Info()
         {
             lon = 0.0f;
             lat = 0.0f;
