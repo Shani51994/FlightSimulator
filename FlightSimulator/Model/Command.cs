@@ -124,7 +124,6 @@ namespace FlightSimulator.Model
             string totalCommands = textUser + "\r\n";
             byte[] buffer = Encoding.ASCII.GetBytes(totalCommands);
             networkStream.Write(buffer, 0, buffer.Length);
-          
         }
     }
 }
