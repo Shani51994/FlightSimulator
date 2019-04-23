@@ -82,7 +82,6 @@ namespace FlightSimulator.Model
                 return;
             }
 
-            //string totalCommands = textUser + "\r\n";
             string[] splitCommands = textUser.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
 
             /*
@@ -112,6 +111,19 @@ namespace FlightSimulator.Model
             }
 
             Thread.Sleep(2000);
+        }
+
+        public void JoystickSendToSimulator(string textUser)
+        {
+            if (!isConnected)
+            {
+                return;
+            }
+
+            string totalCommands = textUser + "\r\n";
+            byte[] buffer = Encoding.ASCII.GetBytes(totalCommands);
+            networkStream.Write(buffer, 0, buffer.Length);
+          
         }
     }
 }

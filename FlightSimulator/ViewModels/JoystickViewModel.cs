@@ -29,12 +29,25 @@ namespace FlightSimulator.ViewModels
             }
         }
 
+        public float ChangeRudder
+        {
+            get
+            {
+                return this.changeRudder;
+            }
+            set
+            {
+                this.changeRudder = value;
+                sliderChanges("controls/flight/rudder", changeThrottle);
+                NotifyPropertyChanged("changeRudder");
+            }
+        }
+
         private void sliderChanges(string pathName, float val)
         {
             string strVal = val.ToString("0.00");
             string command = "set " + pathName + " " + strVal;
-            Command.Instance.sendToSimulator(command);
-
+            Command.Instance.JoystickSendToSimulator(command);
         }
     }
 }
