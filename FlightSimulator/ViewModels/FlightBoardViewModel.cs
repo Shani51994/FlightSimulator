@@ -63,6 +63,7 @@ namespace FlightSimulator.ViewModels
         private void open()
         {
             Info.Instance.openServer();
+            Command.Instance.startClient();
         }
 
         public double Lon

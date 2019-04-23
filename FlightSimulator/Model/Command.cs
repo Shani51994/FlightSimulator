@@ -14,6 +14,7 @@ namespace FlightSimulator.Model
         private bool isConnected;
         public Dictionary<string, string> nameToPath = new Dictionary<string, string>();
         private static Command instance = null;
+        private NetworkStream networkStream;
 
         public Command()
         {
@@ -66,22 +67,23 @@ namespace FlightSimulator.Model
             }
             */
 
-            Console.WriteLine("You are connected");
+            Console.WriteLine("You are connected");
+
             isConnected = true;
-            NetworkStream stream = client.GetStream();
+            this.networkStream = client.GetStream();
             //BinaryReader reader = new BinaryReader(stream);
             //BinaryWriter writer = new BinaryWriter(stream);
         }
 
-        public void sendToSimulator(string textUser, NetworkStream networkStream)
+        public void sendToSimulator(string textUser)
         {
             if (!isConnected)
             {
                 return;
             }
 
-            string totalCommands = textUser + "\r\n";
-            string[] splitCommands = totalCommands.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            //string totalCommands = textUser + "\r\n";
+            string[] splitCommands = textUser.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
 
             /*
             List<string> splitCommand;
@@ -104,10 +106,12 @@ namespace FlightSimulator.Model
             */
             foreach (string command in splitCommands)
             {
-                byte[] buffer = Encoding.ASCII.GetBytes(command);
+                string totalCommands = command + "\r\n";
+                byte[] buffer = Encoding.ASCII.GetBytes(totalCommands);
                 networkStream.Write(buffer, 0, buffer.Length);
             }
-            System.Threading.Thread.Sleep(2000);
+
+            Thread.Sleep(2000);
         }
     }
 }

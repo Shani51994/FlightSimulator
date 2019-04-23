@@ -15,6 +15,11 @@ namespace FlightSimulator.ViewModels
         private String textUser = "";
         public Command commandClient;
     
+        public AutoPilotViewModel()
+        {
+            commandClient = Command.Instance;
+        }
+
     // properties
     public String TextUser
         {
@@ -63,7 +68,7 @@ namespace FlightSimulator.ViewModels
 
         private void SendClick()
         {
-            //commandClient
+            commandClient.sendToSimulator(textUser);
             TextUser = "";
         }
 

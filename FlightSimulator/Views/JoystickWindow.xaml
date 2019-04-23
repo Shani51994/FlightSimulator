@@ -35,7 +35,7 @@
         </TextBox>
         <Slider Grid.Row="2" Grid.Column="1" BorderBrush="Pink" Value="{Binding  ChangeTorttel}" Name="LeftS" Minimum="0" Maximum="1" Width="30" TickPlacement="TopLeft" TickFrequency="0.1" Orientation="Vertical"></Slider>
         <Slider Grid.Row="3" Grid.Column="2" BorderBrush="Pink" Name="ButtomR" Minimum="-1" Maximum="1" Width="300" TickPlacement="TopLeft" TickFrequency="0.2"></Slider>
-        <TextBox Background="Pink" FontSize="15" BorderBrush="Pink" FontWeight="Bold" Name="thorttelVal" Grid.Row="1" Grid.Column="2" Text="{Binding ElementName=LeftS, Path=Value, StringFormat=N2}" ></TextBox>
+        <TextBox Background="Pink" FontSize="15" BorderBrush="Pink" FontWeight="Bold" Name="thorttelVal" Grid.Row="1" Grid.Column="2" Text="{Binding ElementName=LeftS, Path=Value, StringFormat=N2}" bi ></TextBox>
         <TextBox Background="Pink" FontSize="15" BorderBrush="Pink" FontWeight="Bold" Name="rudderVal" Grid.Row="3" Grid.Column="3" Text="{Binding ElementName=ButtomR, Path=Value, StringFormat=N2}" ></TextBox>
         <TextBox Background="Pink" FontSize="15" BorderBrush="Pink" FontWeight="Bold" Name="elevatorVal" Grid.Row="1" Grid.Column="3"  Text="{Binding ElementName=Joyst, Path=Elevator, StringFormat=N2}" >
             <TextBox.LayoutTransform>
