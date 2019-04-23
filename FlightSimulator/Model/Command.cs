@@ -110,6 +110,7 @@ namespace FlightSimulator.Model
                 networkStream.Write(buffer, 0, buffer.Length);
             }
 
+            //******************************************************************************* check if inside or out
             Thread.Sleep(2000);
         }
 
