@@ -62,7 +62,7 @@ namespace FlightSimulator.ViewModels
 
         private void SendClick()
         {
-
+     
         }
 
         private void ClearClick()
