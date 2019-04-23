@@ -20,8 +20,8 @@ namespace FlightSimulator.Model
             client.Connect(ep);
             Console.WriteLine("You are connected");
             NetworkStream stream = client.GetStream();
-            BinaryReader reader = new BinaryReader(stream);
-            BinaryWriter writer = new BinaryWriter(stream);
+            //BinaryReader reader = new BinaryReader(stream);
+            //BinaryWriter writer = new BinaryWriter(stream);
         }
     }
 }

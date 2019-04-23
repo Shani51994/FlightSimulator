@@ -50,7 +50,6 @@ namespace FlightSimulator.Model
             set
             {
                 lon = value;
-
             }
         }
 
@@ -64,7 +63,6 @@ namespace FlightSimulator.Model
             set
             {
                 lat = value;
-
             }
         }
 
@@ -96,20 +94,28 @@ namespace FlightSimulator.Model
 
             BinaryReader reader = new BinaryReader(stream);
 
-            String input;
             String[] splitInput;
 
             while (!toStop)
             {
                 // read the input fron the simulator
-                input = reader.ReadString();
+                string input = "";
+                char c;
 
+                // read data untill \n
+                while ((c = reader.ReadChar()) != '\n')
+                {
+                    input += c;
+                }
+
+                Console.WriteLine(input);
                 // splits the input
                 splitInput = input.Split(',');
 
                 // gets the lon and lat from the input
-                this.lon = float.Parse(splitInput[0]);
-                this.lat = float.Parse(splitInput[1]);
+                Lon = float.Parse(splitInput[0]);
+                Lat = float.Parse(splitInput[1]);
+           
             }
         }
 
