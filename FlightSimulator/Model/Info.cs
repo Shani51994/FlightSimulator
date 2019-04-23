@@ -72,6 +72,13 @@ namespace FlightSimulator.Model
                                                   Properties.Settings.Default.FlightInfoPort);
             TcpListener server = new TcpListener(endPoint);
 
+            //closeServer(server, client);
+            this.thread = new Thread(() => getData(server));
+            thread.Start();
+        }
+
+        public void getData(TcpListener server)
+        {
             // opens server
             server.Start();
 
@@ -84,13 +91,7 @@ namespace FlightSimulator.Model
 
             // after connection- start listen to the flight.
 
-            //closeServer(server, client);
-            this.thread = new Thread(() => getData(server, client));
-            thread.Start();
-        }
 
-        public void getData(TcpListener server, TcpClient client)
-        {
             NetworkStream stream = client.GetStream();
 
             BinaryReader reader = new BinaryReader(stream);
