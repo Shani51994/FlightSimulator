@@ -76,7 +76,8 @@ namespace FlightSimulator.Model
             server.Start();
 
             // waits for connection
-            Console.WriteLine("Waiting for client connections...");
+            Console.WriteLine("Waiting for client connections...");
+
             TcpClient client = server.AcceptTcpClient();
 
             Console.WriteLine("Connected!");

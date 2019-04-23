@@ -13,6 +13,7 @@ namespace FlightSimulator.ViewModels
         private ICommand sendCommand;
         private ICommand clearCommand;
         private String textUser = "";
+        public Command commandClient;
     
     // properties
     public String TextUser
@@ -62,7 +63,8 @@ namespace FlightSimulator.ViewModels
 
         private void SendClick()
         {
-
+            //commandClient
+            TextUser = "";
         }
 
         private void ClearClick()
