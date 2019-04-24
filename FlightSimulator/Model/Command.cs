@@ -65,7 +65,7 @@ namespace FlightSimulator.Model
             //BinaryWriter writer = new BinaryWriter(stream);
         }
 
-        public void sendToSimulator(string textUser)
+        public void send(string textUser)
         {
             if (!isConnected)
             {
@@ -83,6 +83,12 @@ namespace FlightSimulator.Model
                 Thread.Sleep(2000);
             }
 
+        }
+
+        public void sendToSimulator(string textUser)
+        {
+            Thread sendThread = new Thread(() => send(textUser));
+            sendThread.Start();
         }
 
         public void JoystickSendToSimulator(string textUser)
