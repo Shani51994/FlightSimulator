@@ -17,14 +17,14 @@ using FlightSimulator.ViewModels;
 namespace FlightSimulator.Views
 {
     /// <summary>
-    /// Interaction logic for FlightBoardWindow.xaml
+    /// Interaction logic for AutoPilot.xaml
     /// </summary>
-    public partial class FlightBoardWindow : UserControl
+    public partial class AutoPilot : UserControl
     {
-        public FlightBoardWindow()
+        public AutoPilot()
         {
             InitializeComponent();
-            DataContext = new FlightBoardViewModel();
+            DataContext = new AutoPilotViewModel();
         }
     }
 }

@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="FlightSimulator.Views.AutoPilot"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FlightSimulator.Views"
+             mc:Ignorable="d"   
+             d:DesignHeight="420" d:DesignWidth="460">
+    <Grid MinHeight="420" MinWidth="460">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <WrapPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
+            <Button Margin="10" Height="30" Width="50" FontWeight="Bold" Command="{Binding SendCommand}">OK</Button>
+            <Button Margin="10" x:Name="ClearBut" Height="30" Width="50" FontWeight="Bold" Command="{Binding ClearCommand}">Clear</Button>
+        </WrapPanel>
+        <TextBox  Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Text="{Binding TextUser , UpdateSourceTrigger=PropertyChanged}" Background="{Binding BackgroundColor, UpdateSourceTrigger=PropertyChanged}"  Name="Commands" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="5" FontSize="13" AcceptsReturn="True">
+            <TextBox.InputBindings>
+                <KeyBinding Gesture="Enter"></KeyBinding>
+            </TextBox.InputBindings>
+        </TextBox>
+
+
+    </Grid>
+</UserControl>
