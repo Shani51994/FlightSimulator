@@ -25,7 +25,7 @@ namespace FlightSimulator.ViewModels
             {
                 this.changeThrottle = value;
                 setChanges("controls/engines/current-engine/throttle", changeThrottle);
-                NotifyPropertyChanged("changeThrottle");
+           //     NotifyPropertyChanged("changeThrottle");
             }
         }
 
@@ -39,7 +39,7 @@ namespace FlightSimulator.ViewModels
             {
                 this.changeRudder = value;
                 setChanges("controls/flight/rudder", changeThrottle);
-                NotifyPropertyChanged("changeRudder");
+     //           NotifyPropertyChanged("changeRudder");
             }
         }
 
@@ -53,7 +53,7 @@ namespace FlightSimulator.ViewModels
             {
                 this.aileron = value;
                 setChanges("controls/flight/aileron", aileron);
-                NotifyPropertyChanged("aileron");
+     //           NotifyPropertyChanged("aileron");
             }
         }
 
@@ -67,7 +67,7 @@ namespace FlightSimulator.ViewModels
             {
                 this.elevator = value;
                 setChanges("controls/flight/elevator", elevator);
-                NotifyPropertyChanged("elevator");
+      //          NotifyPropertyChanged("elevator");
             }
         }
 
