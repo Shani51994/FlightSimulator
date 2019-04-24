@@ -13,6 +13,22 @@ namespace FlightSimulator.ViewModels
     public class FlightBoardViewModel : BaseNotify
     {
         private ICommand setCommand;
+        private double lat;
+        private double lon;
+        private static FlightBoardViewModel instance = null;
+
+        public static FlightBoardViewModel Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new FlightBoardViewModel();
+                }
+
+                return instance;
+            }
+        }
       
         // property
         public ICommand OpenSettingsWindow
@@ -68,12 +84,28 @@ namespace FlightSimulator.ViewModels
 
         public double Lon
         {
-            get;
+            get
+            {
+                return this.lon;
+            }
+            set
+            {
+                this.lon = value;
+                NotifyPropertyChanged("Lon");
+            }
         }
 
         public double Lat
         {
-            get;
+            get
+            {
+                return this.lat;
+            }
+            set
+            {
+                this.lat = value;
+                NotifyPropertyChanged("Lat");
+            }
         }
     }
 }

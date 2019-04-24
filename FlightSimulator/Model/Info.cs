@@ -114,8 +114,8 @@ namespace FlightSimulator.Model
                 splitInput = input.Split(',');
 
                 // gets the lon and lat from the input
-                Lon = float.Parse(splitInput[0]);
-                Lat = float.Parse(splitInput[1]);
+                FlightBoardViewModel.Instance.Lon = float.Parse(splitInput[0]);
+                FlightBoardViewModel.Instance.Lat = float.Parse(splitInput[1]);
            
             }
         }
