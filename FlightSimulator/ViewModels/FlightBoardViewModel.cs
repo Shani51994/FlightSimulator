@@ -115,7 +115,7 @@ namespace FlightSimulator.ViewModels
         private void close()
         {
             Info.Instance.closeServer();
-            //Command.Instance.startClient();
+            Command.Instance.closeClient();
         }
 
         public double Lon

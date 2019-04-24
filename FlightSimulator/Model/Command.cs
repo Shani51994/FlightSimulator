@@ -16,6 +16,7 @@ namespace FlightSimulator.Model
         private static Command instance = null;
         private NetworkStream networkStream;
         private Thread thread;
+        private Thread sendThread;
         private TcpListener server;
         private TcpClient client;
 
@@ -87,8 +88,8 @@ namespace FlightSimulator.Model
 
         public void sendToSimulator(string textUser)
         {
-            Thread sendThread = new Thread(() => send(textUser));
-            sendThread.Start();
+            this.sendThread = new Thread(() => send(textUser));
+            this.sendThread.Start();
         }
 
         public void JoystickSendToSimulator(string textUser)
@@ -106,6 +107,9 @@ namespace FlightSimulator.Model
         public void closeClient()
         {
             this.isConnected = false;
+            if (this.sendThread != null) {
+                this.sendThread.Abort();
+            }
             this.thread.Abort();
             this.client.Close();
             this.server.Stop();
