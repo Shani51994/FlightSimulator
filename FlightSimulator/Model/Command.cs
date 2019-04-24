@@ -50,15 +50,13 @@ namespace FlightSimulator.Model
             this.client = new TcpClient();
             this.server = new TcpListener(endPoint);
 
+            // connect to server
             while (!client.Connected)
             {
                 try { client.Connect(endPoint); }
                 catch (Exception) { }
             }
-
-            // connect to server
-            client.Connect(endPoint);
-
+            
             Console.WriteLine("You are connected");
 
             isConnected = true;
