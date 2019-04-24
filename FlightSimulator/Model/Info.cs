@@ -68,7 +68,7 @@ namespace FlightSimulator.Model
             }
         }
 
-        public void openServer()
+        public void startServer()
         {
             IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(Properties.Settings.Default.FlightServerIP),
                                                       Properties.Settings.Default.FlightInfoPort);
@@ -84,12 +84,22 @@ namespace FlightSimulator.Model
 
             Console.WriteLine("Connected!");
 
-            // after connection- start listen to the flight.
-            //closeServer(server, client);
-            this.thread = new Thread(() => getData());
-            thread.Start();
+            getData();
         }
 
+       
+        public void openServer()
+        {
+
+            Thread startThread = new Thread(() => startServer());
+            startThread.Start();
+
+            // after connection- start listen to the flight.
+            //closeServer(server, client);
+            //this.thread = new Thread(() => getData());
+            //thread.Start();
+        }
+        
         public void getData()
         {
            NetworkStream stream = this.client.GetStream();
