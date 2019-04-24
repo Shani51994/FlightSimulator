@@ -17,7 +17,7 @@ namespace FlightSimulator.Model
         private bool toStop;
         private float lon;
         private float lat;
-        Thread thread;
+        Thread startThread;
         TcpListener server;
         TcpClient client;
         private static Info instance = null;
@@ -91,7 +91,7 @@ namespace FlightSimulator.Model
         public void openServer()
         {
 
-            Thread startThread = new Thread(() => startServer());
+            this.startThread = new Thread(() => startServer());
             startThread.Start();
 
             // after connection- start listen to the flight.
@@ -134,7 +134,7 @@ namespace FlightSimulator.Model
         public void closeServer()
         {
             this.toStop = true;
-            this.thread.Abort();
+            this.startThread.Abort();
             this.client.Close();
             this.server.Stop();
         }
