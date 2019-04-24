@@ -6,7 +6,8 @@
              xmlns:flightBoardWindow="clr-namespace:FlightSimulator.Views"
              mc:Ignorable="d" 
              d:DesignHeight="430" d:DesignWidth="470">
-    <Grid MinHeight="430" MinWidth="470">
+    <Viewbox>
+    <Grid VerticalAlignment="Stretch" MinHeight="430" MinWidth="470">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
@@ -21,4 +22,5 @@
         </WrapPanel>
         <flightBoardWindow:FlightBoard Grid.Row="1" Grid.Column="0"></flightBoardWindow:FlightBoard>
     </Grid>
+    </Viewbox>
 </UserControl>
