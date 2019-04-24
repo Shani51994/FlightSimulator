@@ -18,6 +18,8 @@ namespace FlightSimulator.Model
         private float lon;
         private float lat;
         Thread thread;
+        TcpListener server;
+        TcpClient client;
         private static Info instance = null;
 
         public static Info Instance
@@ -70,28 +72,27 @@ namespace FlightSimulator.Model
         {
             IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(Properties.Settings.Default.FlightServerIP),
                                                       Properties.Settings.Default.FlightInfoPort);
-            TcpListener server = new TcpListener(endPoint);
-
+            this.server = new TcpListener(endPoint);
 
             // opens server
-            server.Start();
+            this.server.Start();
 
             // waits for connection
             Console.WriteLine("Waiting for client connections...");
 
-            TcpClient client = server.AcceptTcpClient();
+            this.client = server.AcceptTcpClient();
 
             Console.WriteLine("Connected!");
 
             // after connection- start listen to the flight.
             //closeServer(server, client);
-            this.thread = new Thread(() => getData(server, client));
+            this.thread = new Thread(() => getData());
             thread.Start();
         }
 
-        public void getData(TcpListener server, TcpClient client)
+        public void getData()
         {
-           NetworkStream stream = client.GetStream();
+           NetworkStream stream = this.client.GetStream();
 
             BinaryReader reader = new BinaryReader(stream);
 
@@ -120,12 +121,12 @@ namespace FlightSimulator.Model
             }
         }
 
-        public void closeServer(TcpListener server, TcpClient client)
+        public void closeServer()
         {
             this.toStop = true;
             this.thread.Abort();
-            client.Close();
-            server.Stop();
+            this.client.Close();
+            this.server.Stop();
         }
     }
 }

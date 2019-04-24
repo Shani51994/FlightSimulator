@@ -82,6 +82,42 @@ namespace FlightSimulator.ViewModels
             Command.Instance.startClient();
         }
 
+        private ICommand disconnectCommand;
+
+        // property
+
+       public ICommand DisconnectCommand
+        {
+            get
+            {
+                return disconnectCommand ?? (disconnectCommand = new CommandHandler(() => DisconnectClick()));
+            }
+            set
+            {
+
+            }
+        }
+
+        private void DisconnectClick()
+        {
+            // only if not connected- connect.
+            if (this.isConnect)
+            {
+                this.close();
+                this.isConnect = false;
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void close()
+        {
+            Info.Instance.closeServer();
+            //Command.Instance.startClient();
+        }
+
         public double Lon
         {
             get
