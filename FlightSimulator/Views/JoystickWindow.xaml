@@ -21,28 +21,28 @@
             <ColumnDefinition Width="55"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBox Text="← rudder →" Grid.Row="4" Grid.Column="2" BorderBrush="Pink" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" Background="Pink"></TextBox>
-        <TextBox Text="← aileron →" Grid.Row="0" Grid.Column="2"  BorderBrush="Pink" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" Background="Pink"></TextBox>
-        <TextBox Text="← thorttel →" Grid.Row="2" VerticalAlignment="Center"  BorderBrush="Pink" Grid.Column="0" FontSize="15" Background="Pink" FontWeight="Bold">
-            <TextBox.LayoutTransform>
+        <TextBlock Text="← rudder →" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" Background="Pink"></TextBlock>
+        <TextBlock Text="← aileron →" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" Background="Pink"></TextBlock>
+        <TextBlock Text="← thorttel →" Grid.Row="2" VerticalAlignment="Center" Grid.Column="0" FontSize="15" Background="Pink" FontWeight="Bold">
+          <TextBlock.LayoutTransform>
                 <RotateTransform Angle="90"/>
-            </TextBox.LayoutTransform>
-        </TextBox>
-        <TextBox Text="← elevator →" Grid.Row="2" Grid.Column="3"  BorderBrush="Pink" VerticalAlignment="Center" FontSize="15" Background="Pink" FontWeight="Bold">
-            <TextBox.LayoutTransform>
+            </TextBlock.LayoutTransform>
+        </TextBlock>
+      <TextBlock Text="← elevator →" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" FontSize="15" Background="Pink" FontWeight="Bold">
+            <TextBlock.LayoutTransform>
                 <RotateTransform Angle="90"/>
-            </TextBox.LayoutTransform>
-        </TextBox>
+            </TextBlock.LayoutTransform>
+        </TextBlock>
         <Slider Grid.Row="2" Grid.Column="1" BorderBrush="Pink" Value="{Binding ChangeThrottle}" Name="LeftS" Minimum="0" Maximum="1" Width="30" TickPlacement="TopLeft" TickFrequency="0.1" Orientation="Vertical"></Slider>
         <Slider Grid.Row="3" Grid.Column="2" BorderBrush="Pink" Value="{Binding ChangeRudder}" Name="ButtomR" Minimum="-1" Maximum="1" Width="300" TickPlacement="TopLeft" TickFrequency="0.2"></Slider>
-        <TextBox Background="Pink" FontSize="15" BorderBrush="Pink" FontWeight="Bold" Name="thorttelVal" Grid.Row="1" Grid.Column="2" Text="{Binding ElementName=LeftS, Path=Value, StringFormat=N2}" ></TextBox>
-        <TextBox Background="Pink" FontSize="15" BorderBrush="Pink" FontWeight="Bold" Name="rudderVal" Grid.Row="3" Grid.Column="3" Text="{Binding ElementName=ButtomR, Path=Value, StringFormat=N2}" ></TextBox>
-        <TextBox Background="Pink" FontSize="15" BorderBrush="Pink" FontWeight="Bold" Name="elevatorVal" Grid.Row="1" Grid.Column="3"  Text="{Binding ElementName=Joyst, Path=Elevator, StringFormat=N2}" >
-            <TextBox.LayoutTransform>
+      <TextBlock Background="Pink" FontSize="15" FontWeight="Bold" Name="thorttelVal" Grid.Row="1" Grid.Column="2" Text="{Binding ElementName=LeftS, Path=Value, StringFormat=N2}" ></TextBlock>
+        <TextBlock Background="Pink" FontSize="15" FontWeight="Bold" Name="rudderVal" Grid.Row="3" Grid.Column="3" Text="{Binding ElementName=ButtomR, Path=Value, StringFormat=N2}" ></TextBlock>
+      <TextBlock Background="Pink" FontSize="15"  FontWeight="Bold" Name="elevatorVal" Grid.Row="1" Grid.Column="3"  Text="{Binding ElementName=Joyst, Path=Elevator, StringFormat=N2}" >
+             <TextBlock.LayoutTransform>
                 <RotateTransform Angle="90"/>
-            </TextBox.LayoutTransform>
-        </TextBox>
-        <TextBox Background="Pink" FontSize="15" BorderBrush="Pink" FontWeight="Bold" Name="ailerinVal" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="3" Text="{Binding ElementName=Joyst, Path=Aileron, StringFormat=N2}" ></TextBox>
+            </TextBlock.LayoutTransform>
+        </TextBlock>
+      <TextBlock Background="Pink" FontSize="15" FontWeight="Bold" Name="ailerinVal" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="3" Text="{Binding ElementName=Joyst, Path=Aileron, StringFormat=N2}" ></TextBlock>
         <joystickWindow:Joystick Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"  BorderBrush="Pink" x:Name="Joyst" HorizontalAlignment="Center" 
                         Aileron="{Binding Aileron, Mode=OneWayToSource}" Elevator="{Binding Elevator, Mode=OneWayToSource}"></joystickWindow:Joystick>
 
