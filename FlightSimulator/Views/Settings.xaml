@@ -19,16 +19,23 @@
             </ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Flight Server IP:" Padding="3" Margin="3" Grid.Column="0" Grid.Row="0" FontSize="15" FontWeight="Bold"></TextBlock>
-        <TextBox Name="ipTxt" Grid.Column="1" Grid.Row="0" Padding="3" Margin="3" FontSize="13" Text="{Binding FlightServerIP, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <TextBlock Text="Flight Info Port:" Padding="3" Margin="3" Grid.Column="0" Grid.Row="1" FontSize="15" FontWeight="Bold"></TextBlock>
-        <TextBox Name="portInfoTxt" Grid.Column="1" Grid.Row="1" Padding="3" Margin="3" FontSize="13" Text="{Binding FlightInfoPort, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <TextBlock Text="Flight Command Port:" Padding="3" Margin="3" Grid.Column="0" Grid.Row="2" FontSize="15" FontWeight="Bold"></TextBlock>
-        <TextBox Name="commandPortTxt" Grid.Column="1" Grid.Row="2" Padding="3" Margin="3" FontSize="13" Text="{Binding FlightCommandPort, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBlock Text="Flight Server IP:" Padding="3" Margin="3" Grid.Column="0" Grid.Row="0" FontSize="15" 
+                   FontWeight="Bold"></TextBlock>
+        <TextBox Name="ipTxt" Grid.Column="1" Grid.Row="0" Padding="3" Margin="3" FontSize="13" 
+                 Text="{Binding FlightServerIP, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBlock Text="Flight Info Port:" Padding="3" Margin="3" Grid.Column="0" Grid.Row="1" FontSize="15" 
+                   FontWeight="Bold"></TextBlock>
+        <TextBox Name="portInfoTxt" Grid.Column="1" Grid.Row="1" Padding="3" Margin="3" FontSize="13" 
+                 Text="{Binding FlightInfoPort, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBlock Text="Flight Command Port:" Padding="3" Margin="3" Grid.Column="0" Grid.Row="2" FontSize="15" 
+                   FontWeight="Bold"></TextBlock>
+        <TextBox Name="commandPortTxt" Grid.Column="1" Grid.Row="2" Padding="3" Margin="3" FontSize="13" 
+                 Text="{Binding FlightCommandPort, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
-        <Button Name="okBtn" Grid.Column="0" Grid.Row="3" Padding="3" HorizontalAlignment="Stretch" Grid.ColumnSpan="2"
-                Height="30" Width="50" Margin="10" Command="{Binding ClickCommand}">Ok</Button>
-        <Button Name="CancelNBtn" Grid.Column="1" Grid.Row="3" Padding="3" HorizontalAlignment="Stretch" Grid.ColumnSpan="2"
-                Height="30" Width="50" Margin="10" Command="{Binding CancelCommand}">Cancel</Button>
+        <Button Name="okBtn" Grid.Column="0" Grid.Row="3" Padding="3" HorizontalAlignment="Stretch" 
+                Grid.ColumnSpan="2" Height="30" Width="50" Margin="10" Command="{Binding ClickCommand}">Ok</Button>
+        <Button Name="CancelNBtn" Grid.Column="1" Grid.Row="3" Padding="3" HorizontalAlignment="Stretch" 
+                Grid.ColumnSpan="2" Height="30" Width="50" Margin="10" 
+                Command="{Binding CancelCommand}">Cancel</Button>
     </Grid>
 </Window>
