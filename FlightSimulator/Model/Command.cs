@@ -70,8 +70,13 @@ namespace FlightSimulator.Model
             // connect to server
             while (!client.Connected)
             {
-                try { client.Connect(endPoint); }
-                catch (Exception) { }
+                try
+                {
+                    client.Connect(endPoint);
+                }
+                catch (Exception)
+                {
+                }
             }
           
             isConnected = true;

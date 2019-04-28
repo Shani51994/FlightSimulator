@@ -124,7 +124,6 @@ namespace FlightSimulator.Model
                     input += c;
                 }
 
-                Console.WriteLine(input);
                 // splits the input
                 splitInput = input.Split(',');
 

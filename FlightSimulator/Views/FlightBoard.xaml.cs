@@ -30,6 +30,8 @@ namespace FlightSimulator.Views
         public FlightBoard()
         {
             InitializeComponent();
+
+            // stores the get notify from viewModel
             FlightBoardViewModel.Instance.PropertyChanged += Vm_PropertyChanged;
 
         }
