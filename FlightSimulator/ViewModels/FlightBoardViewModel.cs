@@ -17,6 +17,9 @@ namespace FlightSimulator.ViewModels
         private double lon;
         private static FlightBoardViewModel instance = null;
 
+        /*
+         * singleton to create only one instance of the FlightBoardViewModel
+        */
         public static FlightBoardViewModel Instance
         {
             get
@@ -25,20 +28,23 @@ namespace FlightSimulator.ViewModels
                 {
                     instance = new FlightBoardViewModel();
                 }
-
                 return instance;
             }
         }
-      
-        // property
+
+        // Property of OpenSettingsWindow
         public ICommand OpenSettingsWindow
         {
             get
             {
+                // activate OnClick
                 return setCommand ?? (setCommand = new CommandHandler(() => OnClick()));
             }
         }
 
+        /*
+         * open the settings window
+         */ 
         private void OnClick()
         {
             Settings settings = new Settings();
@@ -46,22 +52,23 @@ namespace FlightSimulator.ViewModels
             settings.ShowDialog();
         }
 
+
         bool isConnect = false;
         private ICommand connectCommand;
 
-        // property
+        // Property of ConnectCommand
         public ICommand ConnectCommand
         {
             get
             {
+                // activate ConnectClick
                 return connectCommand ?? (connectCommand = new CommandHandler(() => ConnectClick()));
-            }
-            set
-            {
-
             }
         }
 
+        /*
+          * if not connected- connect the client and server
+        */
         private void ConnectClick()
         {
             // only if not connected- connect.
@@ -84,26 +91,25 @@ namespace FlightSimulator.ViewModels
 
         private ICommand disconnectCommand;
 
-        // property
-
-       public ICommand DisconnectCommand
+        // property of DisconnectCommand
+        public ICommand DisconnectCommand
         {
             get
             {
+                // activate DisconnectClick
                 return disconnectCommand ?? (disconnectCommand = new CommandHandler(() => DisconnectClick()));
-            }
-            set
-            {
-
             }
         }
 
+        /*
+         * Disconnect the connection between the client and server
+         */
         private void DisconnectClick()
         {
-            // only if not connected- connect.
             if (this.isConnect)
             {
-                this.close();
+                Info.Instance.closeServer();
+                Command.Instance.closeClient();
                 this.isConnect = false;
             }
             else
@@ -111,13 +117,8 @@ namespace FlightSimulator.ViewModels
                 return;
             }
         }
-
-        private void close()
-        {
-            Info.Instance.closeServer();
-            Command.Instance.closeClient();
-        }
-
+      
+        // Property of Lon
         public double Lon
         {
             get
@@ -131,6 +132,7 @@ namespace FlightSimulator.ViewModels
             }
         }
 
+        // Property of Lat
         public double Lat
         {
             get

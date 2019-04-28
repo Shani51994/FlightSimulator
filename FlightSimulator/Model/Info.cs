@@ -12,6 +12,10 @@ using System.Threading.Tasks;
 
 namespace FlightSimulator.Model
 {
+
+    /**
+     * this class responsible of the simulator connection to the client, and for transferring information from the simulator
+     */
     public class Info
     {
         private bool toStop;
@@ -22,6 +26,11 @@ namespace FlightSimulator.Model
         TcpClient client;
         private static Info instance = null;
 
+
+
+        /*
+         * singleton to create only one instance of the info
+        */
         public static Info Instance
         {
             get
@@ -33,8 +42,9 @@ namespace FlightSimulator.Model
 
                 return instance;
             }
-        } 
+        }
 
+        // constructor to initialize 
         public Info()
         {
             lon = 0.0f;
@@ -68,45 +78,39 @@ namespace FlightSimulator.Model
             }
         }
 
+        /*
+         * open and connect to the server, and send data from the simulator
+         */
         public void startServer()
         {
             IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(Properties.Settings.Default.FlightServerIP),
                                                       Properties.Settings.Default.FlightInfoPort);
             this.server = new TcpListener(endPoint);
-
+          
             // opens server
             this.server.Start();
-
-            // waits for connection
-            Console.WriteLine("Waiting for client connections...");
-
             this.client = server.AcceptTcpClient();
-
-            Console.WriteLine("Connected!");
-
             getData();
         }
 
-       
+        /*
+         * activate the startServer from a thread
+         */
         public void openServer()
         {
-
             this.startThread = new Thread(() => startServer());
             startThread.Start();
-
-            // after connection- start listen to the flight.
-            //closeServer(server, client);
-            //this.thread = new Thread(() => getData());
-            //thread.Start();
         }
-        
+
+        /*
+         * responsible to get the data from the simulator, need to gather each input until \n (end of data),
+         * get data all the time that there is connection 
+         */
         public void getData()
         {
            NetworkStream stream = this.client.GetStream();
-
-            BinaryReader reader = new BinaryReader(stream);
-
-            String[] splitInput;
+           BinaryReader reader = new BinaryReader(stream);
+           String[] splitInput;
 
             while (!toStop)
             {
@@ -124,14 +128,16 @@ namespace FlightSimulator.Model
                 // splits the input
                 splitInput = input.Split(',');
 
-  
-                // gets the lon and lat from the input
+                // gets the lon and lat from the input and add them to the lon and lat in the instance
                 FlightBoardViewModel.Instance.Lon = float.Parse(splitInput[0]);
                 FlightBoardViewModel.Instance.Lat = float.Parse(splitInput[1]);
            
             }
         }
 
+        /*
+         * close the connection to the server, and the clients that are connected to him
+         */
         public void closeServer()
         {
             this.toStop = true;

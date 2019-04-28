@@ -146,9 +146,7 @@ namespace FlightSimulator.Views
             double distance = Math.Round(Math.Sqrt(deltaPos.X * deltaPos.X + deltaPos.Y * deltaPos.Y));
             if (distance >= canvasWidth / 2 || distance >= canvasHeight / 2)
                 return;
-           // Aileron = -deltaPos.Y;
-           // Elevator = deltaPos.X;
-
+    
             Aileron = deltaPos.X /124;
             Elevator = -deltaPos.Y /124;
 

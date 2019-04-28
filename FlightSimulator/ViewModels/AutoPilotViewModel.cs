@@ -22,7 +22,7 @@ namespace FlightSimulator.ViewModels
             commandClient = Command.Instance;
         }
 
-        // properties
+        // Property of TextUser
         public String TextUser
         {
             get
@@ -32,21 +32,25 @@ namespace FlightSimulator.ViewModels
             set
             {
                 textUser = value;
+                // notify that the text and background has change
                 NotifyPropertyChanged("TextUser");
                 NotifyPropertyChanged("BackgroundColor");
             }
         }
 
+        // Property of BackgroundColor
         public String BackgroundColor
         {
             get
             {
+                // if no text the background is white
                 if (textUser == "")
                 {
                     return "White";
                 }
                 else
                 {
+                    // if ok pressed and there is no change in text the background is white 
                     if (isOkPressed && (TextUser == oldTxt))
                     {
                         return "White";
@@ -57,22 +61,29 @@ namespace FlightSimulator.ViewModels
             }
         }
 
+        // Property of SendCommand
         public ICommand SendCommand
         {
             get
             {
+                // activate SendClick
                 return sendCommand ?? (sendCommand = new CommandHandler(() => SendClick()));
             }
         }
 
+        // Property of ClearCommand
         public ICommand ClearCommand
         {
             get
             {
+                // activate ClearClick
                 return clearCommand ?? (clearCommand = new CommandHandler(() => ClearClick()));
             }
         }
 
+        /*
+         * sent the command to the simulator, and change the back ground to white
+         */
         private void SendClick()
         {
             commandClient.sendToSimulator(textUser);
@@ -81,6 +92,9 @@ namespace FlightSimulator.ViewModels
             NotifyPropertyChanged("BackgroundColor");
         }
 
+        /*
+         * delete the text in the auto pilot
+         */
         private void ClearClick()
         {
             TextUser = ""; 

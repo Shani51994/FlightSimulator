@@ -7,12 +7,17 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
 
+
+
 namespace FlightSimulator.Model
 {
+
+    /**
+     * this class responsible of the client connection to the simulator, and for transferring information from the client
+     */
     class Command
     {
         private bool isConnected;
-        public Dictionary<string, string> nameToPath = new Dictionary<string, string>();
         private static Command instance = null;
         private NetworkStream networkStream;
         private Thread thread;
@@ -20,30 +25,41 @@ namespace FlightSimulator.Model
         private TcpListener server;
         private TcpClient client;
 
+        
         public Command()
         {
             this.isConnected = false;
         }
 
+        /*
+         * singleton to creat only one instance of the command
+        */
         public static Command Instance
         {
             get
             {
-                if(instance == null)
+                // if not exist create new else send the exist instance 
+                if (instance == null)
                 {
                     instance = new Command();
                 }
-
                 return instance;
             }
         }
 
+        /*
+         * activate the connectToServer from a thread
+         */
         public void startClient()
         {
             this.thread = new Thread(() => connectToServer());
             thread.Start();
         }
 
+
+        /*
+         * open client and connect to the server
+         */
         void connectToServer()
         {
             IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(Properties.Settings.Default.FlightServerIP),
@@ -57,15 +73,14 @@ namespace FlightSimulator.Model
                 try { client.Connect(endPoint); }
                 catch (Exception) { }
             }
-            
-            Console.WriteLine("You are connected");
-
+          
             isConnected = true;
             this.networkStream = client.GetStream();
-            //BinaryReader reader = new BinaryReader(stream);
-            //BinaryWriter writer = new BinaryWriter(stream);
         }
 
+        /*
+         *sending commands from the auto pilot, after each command wait 2 sec for sending the next one
+         */
         public void send(string textUser)
         {
             if (!isConnected)
@@ -73,8 +88,10 @@ namespace FlightSimulator.Model
                 return;
             }
 
+            // split command by the current environment
             string[] splitCommands = textUser.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
 
+            // for each command in the auto pilot, each command need to be send with \r\n
             foreach (string command in splitCommands)
             {
                 string totalCommands = command + "\r\n";
@@ -86,12 +103,19 @@ namespace FlightSimulator.Model
 
         }
 
+
+        /*
+         * activate the send of client from a thread (sending commands from the auto pilot)
+         */
         public void sendToSimulator(string textUser)
         {
             this.sendThread = new Thread(() => send(textUser));
             this.sendThread.Start();
         }
 
+        /*
+         * send command after moving the joystick (add \r\n to the command)
+         */
         public void JoystickSendToSimulator(string textUser)
         {
             if (!isConnected)
@@ -104,6 +128,11 @@ namespace FlightSimulator.Model
             networkStream.Write(buffer, 0, buffer.Length);
         }
 
+
+
+        /*
+         * close the connection to the client, and the server that are connected to him
+         */
         public void closeClient()
         {
             this.isConnected = false;

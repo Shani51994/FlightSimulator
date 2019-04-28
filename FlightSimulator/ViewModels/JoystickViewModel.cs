@@ -14,7 +14,7 @@ namespace FlightSimulator.ViewModels
         private float aileron;
         private float elevator;
 
-        // properties
+        // Property of ChangeThrottle
         public float ChangeThrottle
         {
             get
@@ -25,10 +25,10 @@ namespace FlightSimulator.ViewModels
             {
                 this.changeThrottle = value;
                 setChanges("controls/engines/current-engine/throttle", changeThrottle);
-           //     NotifyPropertyChanged("changeThrottle");
             }
         }
 
+        // Property of ChangeRudder
         public float ChangeRudder
         {
             get
@@ -39,10 +39,10 @@ namespace FlightSimulator.ViewModels
             {
                 this.changeRudder = value;
                 setChanges("controls/flight/rudder", changeThrottle);
-     //           NotifyPropertyChanged("changeRudder");
             }
         }
 
+        // Property of Aileron
         public float Aileron
         {
             get
@@ -53,10 +53,10 @@ namespace FlightSimulator.ViewModels
             {
                 this.aileron = value;
                 setChanges("controls/flight/aileron", aileron);
-     //           NotifyPropertyChanged("aileron");
             }
         }
 
+        // Property of Aileron
         public float Elevator
         {
             get
@@ -67,12 +67,15 @@ namespace FlightSimulator.ViewModels
             {
                 this.elevator = value;
                 setChanges("controls/flight/elevator", elevator);
-      //          NotifyPropertyChanged("elevator");
             }
         }
 
+        /*
+         * send the values form the joystick to the simulator
+         */
         private void setChanges(string pathName, float val)
         {
+            // send the value form the joystick in a format of : set 'path in simulator' 'new val'
             string strVal = val.ToString("0.00");
             string command = "set " + pathName + " " + strVal;
             Command.Instance.JoystickSendToSimulator(command);

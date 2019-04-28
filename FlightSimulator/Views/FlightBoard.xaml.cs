@@ -18,6 +18,7 @@ using FlightSimulator.ViewModels;
 using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 
+
 namespace FlightSimulator.Views
 {
     /// <summary>
@@ -42,6 +43,9 @@ namespace FlightSimulator.Views
             plotter.AddLineGraph(planeLocations, 2, "Route");
         }
 
+        /*
+         * draw the new point in the screen
+         */
         private void Vm_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if(e.PropertyName.Equals("Lat") || e.PropertyName.Equals("Lon"))
